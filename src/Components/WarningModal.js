@@ -1,8 +1,11 @@
-import Modal from "@material-ui/core/Modal";
 import React, {useEffect, useState} from "react";
+
+// Material-UI
+import Modal from "@material-ui/core/Modal";
 import { makeStyles } from '@material-ui/core/styles';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+// Redux
 import { connect} from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -23,11 +26,9 @@ const WarningModal = props => {
     const classes = useStyles();
 
     const [open, setOpen] = useState(false);
-    const [message, setMessage] = useState('');
 
     useEffect(()=> {
         setOpen(props.open);
-        setMessage(props.message);
     },[props.open]);
 
     const handleClose = () => {
@@ -49,8 +50,8 @@ const WarningModal = props => {
             >
                 <Fade in={open}>
                     <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Transition modal</h2>
-                        <p id="transition-modal-description">{message}</p>
+                        <h2 id="transition-modal-title">Warning</h2>
+                        <p id="transition-modal-description">{props.message}</p>
                     </div>
                 </Fade>
             </Modal>
@@ -59,7 +60,7 @@ const WarningModal = props => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        closeModal: () => dispatch({ type: '', openModal: false, message: ''})
+        closeModal: () => dispatch({ type: 'CLOSE_MODAL'})
     };
 };
 const mapStateToProps = state => {

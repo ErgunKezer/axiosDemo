@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-function Service() {
+function ServiceBase() {
     this.get = (api, params) => {
         return Axios.get(api,params);
     };
@@ -11,4 +11,4 @@ function Service() {
         return Axios.post(api,params);
     };
 }
-export default new Service();
+export default new ServiceBase();
